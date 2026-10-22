@@ -18,11 +18,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { BrowserRouter, Routes, Route } from "react-router";
 //rutas
 import { Home } from "./Home";
 import { About } from "./About";
 import { Detail } from "./Detail";
+import { Favorite } from "./Favorite";
 import { useNavigate } from "react-router";
 import { ContexAutor } from "../context/ContexAutor";
 
@@ -157,6 +159,17 @@ export const Layout = () => {
         <Divider />
         <List>
           <ListItem disablePadding>
+            <ListItemButton onClick={() => navigate("/favorite")}>
+              <ListItemIcon>
+                <FavoriteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Favorite" />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+        </List>
+        <List>
+          <ListItem disablePadding>
             <ListItemButton onClick={() => navigate("/about")}>
               <ListItemIcon>
                 <MailIcon />
@@ -165,6 +178,7 @@ export const Layout = () => {
             </ListItemButton>
           </ListItem>
         </List>
+
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
@@ -173,6 +187,7 @@ export const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/favorite" element={<Favorite />} />
         </Routes>
       </Main>
     </Box>

@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import corazon from '../assets/favorito.png';
+//import {FavoriteIdContext} from '../context/ContextFavoriteId';
 import {
   Container,
   Grid,
@@ -16,6 +19,7 @@ import {
 export const Home = () => {
   const navigate = useNavigate();
   const [coins, setCoins] = useState([]);
+  //const [ favoriteId, setFavoriteId ] = useContext(FavoriteIdContext);
 
   useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
@@ -125,6 +129,23 @@ export const Home = () => {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            <Box
+                component="img"
+
+                src={corazon}
+                alt={"agregar a favoritos"}
+                
+                sx={{
+                  width: 72,
+                  height: 72,
+                  objectFit: "contain",
+                  mx: "auto",
+                  mb: 2,
+                }}
+                
+                onClick={() => navigate("/favorite")}
+              />
+            
           </Card>
         ))}
       </Box>
